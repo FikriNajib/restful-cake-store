@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    ports:
+      - 3000:3000
+    image : restful-cake
+  mysql:
+    command: --disable-partition-engine-check
+    image: mysql:5.7
+    restart: always
+    container_name: godockerDB
+    environment:
+      MYSQL_HOST : mysql
+      MYSQL_DATABASE: cake_store
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - 3307:3307
+    expose:
+      - 3306
+    volumes:
+      - my-db:/var/lib/mysql
+volumes:
+  my-db:

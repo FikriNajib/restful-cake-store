@@ -110,7 +110,7 @@ func AddCake(c *gin.Context) {
 	input.Created_at = time.Now()
 	input.Updated_at = time.Now()
 
-	_, err = db.Exec("INSERT INTO cake(title, description, rating, image, created_at) VALUES(?, ?, ?, ?, ?)", input.Title, input.Description, input.Rating, input.Image, input.Created_at)
+	_, err = db.Exec("INSERT INTO cake(title, description, rating, image, created_at, updated_at) VALUES(?, ?, ?, ?, ?, ?)", input.Title, input.Description, input.Rating, input.Image, input.Created_at, input.Updated_at	)
 	if err != nil {
 		log.Printf("Query error", err.Error())
 		c.JSON(http.StatusInternalServerError,gin.H{

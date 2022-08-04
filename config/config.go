@@ -8,8 +8,8 @@ import (
 
 func ConnectDB() *sql.DB {
 
-	//db, err := sql.Open("mysql", "admin:admin@tcp(godockerDB)/cake_store") //TODO: uncomment if want run with docker
-	db, err := sql.Open("mysql", "admin:admin@/cake_store") //TODO: run with "go run main.go"
+	db, err := sql.Open("mysql", "admin:admin@tcp(godockerDB)/cake_store") //TODO: uncomment if want run with docker
+	//db, err := sql.Open("mysql", "admin:admin@/cake_store") //TODO: run with "go run main.go"
 
 	if err != nil {
 		log.Println(err.Error())

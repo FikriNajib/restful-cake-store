@@ -4,8 +4,10 @@
     2. MySql for Database Driver
     3. Gin for Go Framework
     4. Goose for Database Migration
-   
-
+ - Build Container
+   " docker build -f Dockerfile -t restful-cake . "
+ - Run with docker 
+   " docker-compose up --build -d "
  - Listen at port 3000 :
    ======================================================================
    - Run basic with command: "go run main.go"

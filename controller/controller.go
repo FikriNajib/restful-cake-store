@@ -1,13 +1,13 @@
 package controller
 
 import (
-	"restful-cake-store/config"
-	"restful-cake-store/model"
 	"database/sql"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
+	"restful-cake-store/config"
+	"restful-cake-store/model"
 	"strconv"
 	"time"
 )
@@ -108,8 +108,9 @@ func AddCake(c *gin.Context) {
 		return
 	}
 	input.Created_at = time.Now()
+	input.Updated_at = time.Now()
 
-	_, err = db.Exec("INSERT INTO cake(title, description, rating, image, created_at) VALUES(?, ?, ?, ?, ?)", input.Title, input.Description, input.Rating, input.Image, input.Created_at)
+	_, err = db.Exec("INSERT INTO cake(title, description, rating, image, created_at, updated_at) VALUES(?, ?, ?, ?, ?, ?)", input.Title, input.Description, input.Rating, input.Image, input.Created_at, input.Updated_at	)
 	if err != nil {
 		log.Printf("Query error", err.Error())
 		c.JSON(http.StatusInternalServerError,gin.H{
@@ -138,7 +139,6 @@ func UpdateCake(c *gin.Context) {
 		})
 		return
 	}
-
 	input.Updated_at = time.Now()
 	_, err = db.Exec("update cake set title= ?, description= ? , rating= ?, image= ?, updated_at= ? where id= ?",input.Title, input.Description, input.Rating, input.Image, input.Updated_at, id)
 	if err == sql.ErrNoRows {
